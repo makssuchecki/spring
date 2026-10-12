@@ -7,19 +7,27 @@ public class Planets {
         double jupiterOrbitInEarthYears = 11.862615;
         double saturnOrbitInEarthYears = 29.447498;
         double uranusOrbitInEarthYears = 84.016846;
-        double neptunOrbitInEarthYears = 164.79132;
+        double neptuneOrbitInEarthYears = 164.79132;
 
-        switch(planet){
-            case "Mercury":
-                return ageInSeconds / (EARTH_YEAR_IN_SECONDS  * mercuryOrbitInEarthYears);
-            case "Venus":
-                return ageInSeconds / (EARTH_YEAR_IN_SECONDS  * venusOrbitInEarthYears);
-            default:
-                return 0.0;
-        }
+        return switch (planet) {
+            case "Mercury" -> ageInSeconds / (EARTH_YEAR_IN_SECONDS * mercuryOrbitInEarthYears);
+            case "Venus" -> ageInSeconds / (EARTH_YEAR_IN_SECONDS * venusOrbitInEarthYears);
+            case "Earth" -> ageInSeconds / EARTH_YEAR_IN_SECONDS;
+            case "Mars" -> ageInSeconds / (EARTH_YEAR_IN_SECONDS * marsOrbitInEarthYears);
+            case "Jupiter" -> ageInSeconds / (EARTH_YEAR_IN_SECONDS * jupiterOrbitInEarthYears);
+            case "Saturn" -> ageInSeconds / (EARTH_YEAR_IN_SECONDS * saturnOrbitInEarthYears);
+            case "Uranus" -> ageInSeconds / (EARTH_YEAR_IN_SECONDS * uranusOrbitInEarthYears);
+            case "Neptune" -> ageInSeconds / (EARTH_YEAR_IN_SECONDS * neptuneOrbitInEarthYears);
+
+            default -> 0.0;
+        };
     }
+
     public static void main(String[] args){
         System.out.println(ageOnAPlanet(1000000000, "Mercury"));
+        System.out.println(ageOnAPlanet(1000000000, "Venus"));
+        System.out.println(ageOnAPlanet(1000000000, "Jupiter"));
+        System.out.println(ageOnAPlanet(1000000000, "Neptune"));
 
     }
 }
