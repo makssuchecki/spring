@@ -1,6 +1,13 @@
 public class Planets {
     private static final double EARTH_YEAR_IN_SECONDS = 31557600.0;
-    public static double ageOnAPlanet(int ageInSeconds, String planet){
+    public static double ageOnAPlanet(long ageInSeconds, String planet){
+        if (ageInSeconds < 0) {
+            throw new IllegalArgumentException("Age cannot be negative: " + ageInSeconds);
+        }
+        if (planet == null) {
+            throw new IllegalArgumentException("Planet cannot be null");
+        }
+
         double mercuryOrbitInEarthYears = 0.2408467;
         double venusOrbitInEarthYears = 0.61519726;
         double marsOrbitInEarthYears = 1.8808158;
@@ -19,7 +26,7 @@ public class Planets {
             case "Uranus" -> ageInSeconds / (EARTH_YEAR_IN_SECONDS * uranusOrbitInEarthYears);
             case "Neptune" -> ageInSeconds / (EARTH_YEAR_IN_SECONDS * neptuneOrbitInEarthYears);
 
-            default -> 0.0;
+            default -> throw new IllegalArgumentException("Unknown planet: " + planet);
         };
     }
 
